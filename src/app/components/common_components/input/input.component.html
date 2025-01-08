@@ -1,0 +1,8 @@
+<div class="form-group">
+    <ng-content select="app-label"></ng-content>
+    <input [id]="id" [type]="type" [placeholder]="placeholder" [required]="required" class="form-control"
+        [ngClass]="classList" [formControl]="control" [attr.data-provider]="DataProvider"
+        [attr.config]="config?.additionalConfig" />
+</div>
+
+<!-- [attr.shortcut-keys]="ShortcutKeysStartSequence" -->

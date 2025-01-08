@@ -1,0 +1,38 @@
+<mat-dialog-content style="border-top: 20px solid #5f9ffd; display: flex; flex-direction: column; height: 100%;">
+    <!-- Header -->
+    <div class="dialog-header"
+        style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <div class="title" style="font-weight: bold; font-size: large;">Add Product Detail Labels</div>
+        <button mat-button type="button" (click)="onCancel()" class="close-button"
+            style="font-size: 20px;">&times;</button>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="dialog-content" style="flex-grow: 1; overflow-y: auto; padding: 10px;">
+        <form [formGroup]="labelForm">
+            <ng-container formArrayName="fields">
+                <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group"
+                    style="margin-bottom: 10px;">
+                    <app-input [required]="true" [control]="field.get('labelName') " [placeholder]="'Enter Field name'">
+                    </app-input>
+                    <app-select [control]="field.get('valueType1')" [options]="optionsDataSource">
+                    </app-select>
+                    <button mat-button color="warn" type="button" (click)="removeField(i)">Delete</button>
+                </div>
+            </ng-container>
+            <div class="add-button-container" style="margin-top: 15px; text-align: center;">
+                <button mat-button color="primary" type="button" (click)="addField()">
+                    {{ __buttonConfig.label }}
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="dialog-footer" style="display: flex; justify-content: center; padding: 10px;">
+        <button mat-raised-button color="primary" type="button" (click)="submitForm()" [disabled]="labelForm.invalid">
+            Submit
+        </button>
+        <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+</mat-dialog-content>

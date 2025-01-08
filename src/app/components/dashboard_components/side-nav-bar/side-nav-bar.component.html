@@ -1,0 +1,62 @@
+<!-- <div class="sidebar-container" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="sidebar-toggle" (click)="toggleSidebar()">
+        <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="sidebar-content">
+        <div class="brand">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=50&h=50&fit=crop" alt="Music Logo"
+                class="logo">
+            <span class="brand-name" *ngIf="!isCollapsed">Casting</span>
+        </div>
+        <nav class="nav-menu">
+            <a routerLink="/dash" class="nav-item" routerLinkActive="active" [class.active]="activeItem === 'home'"
+                (click)="setActiveItem('home')">
+                <i class="fas fa-home"></i> 
+                <span *ngIf="!isCollapsed">Home</span>
+            </a>
+            <a routerLink="/test" class="nav-item" routerLinkActive="active" [class.active]="activeItem === 'browse'"
+                (click)="setActiveItem('browse') ">
+                <i class="fas fa-compass"></i> 
+                <span *ngIf="!isCollapsed">Browse</span>
+            </a>
+            <a routerLink="/playlist" class="nav-item" routerLinkActive="active"
+                [class.active]="activeItem === 'playlist'" (click)="setActiveItem('playlist')">
+                <i class="fas fa-list"></i> 
+                <span *ngIf="!isCollapsed">Playlist</span>
+            </a>
+            <a routerLink="/radio" class="nav-item" routerLinkActive="active" [class.active]="activeItem === 'radio'"
+                (click)="setActiveItem('radio')">
+                <i class="fas fa-broadcast-tower"></i>
+                <span *ngIf="!isCollapsed">Radio</span>
+            </a>
+            <a routerLink="/settings" class="nav-item" routerLinkActive="active"
+                [class.active]="activeItem === 'settings'" (click)="setActiveItem('settings')">
+                <i class="fas fa-cog"></i> 
+                <span *ngIf="!isCollapsed">Settings</span>
+            </a>
+        </nav>
+    </div>
+</div>  -->
+
+<div class="sidebar-container" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="sidebar-toggle" (click)="toggleSidebar()">
+        <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="sidebar-content">
+        <div class="brand">
+            <img src="costing.jpg" alt="Music Logo"
+                class="logo" />
+            <span class="brand-name" *ngIf="!isCollapsed">Costing</span>
+        </div>
+        <nav class="nav-menu">
+            <a class="nav-item pointer" [class.active]="activeItem === 'home'" (click)="navigateTo('/dashboard/costing', 'home')">
+                <i class="fas fa-dollar-sign"></i>
+                <span *ngIf="!isCollapsed">Product Costing</span>
+            </a>
+            <a class="nav-item pointer" [class.active]="activeItem === 'settings'" (click)="navigateTo('/dashboard/test', 'settings')">
+                <i class="fas fa-cog"></i> 
+                <span *ngIf="!isCollapsed">Settings</span>
+            </a>
+        </nav>
+    </div>
+</div>

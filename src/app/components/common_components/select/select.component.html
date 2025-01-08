@@ -1,0 +1,8 @@
+<div class="form-group">
+    <ng-content select="app-label"></ng-content>
+    <select [id]="id" class="form-select" [formControl]="control" [ngClass]="classList">
+        <option *ngFor="let option of options; let i = index" [value]="option.value || option.id ">
+            {{ option.label }}
+        </option>
+    </select>
+</div>

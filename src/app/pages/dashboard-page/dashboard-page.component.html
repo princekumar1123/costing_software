@@ -1,0 +1,66 @@
+<!-- <div>
+    <div class="top_bar">
+    <app-top-menu-bar></app-top-menu-bar>
+</div>
+<app-side-nav-bar></app-side-nav-bar>
+<div class="container_size" [ngClass]="sideBarStatus() ? 'shrunkSideBarContent' : 'expendedSideBarContent'">
+    <router-outlet></router-outlet>
+</div>
+</div> -->
+
+<div class="layout">
+    <div class="top_bar">
+        <app-top-menu-bar></app-top-menu-bar>
+    </div>
+    <div class="side_nav">
+        <app-side-nav-bar></app-side-nav-bar>
+    </div>
+    <div class="container_size" [ngClass]="sideBarStatus() ? 'shrunkSideBarContent' : 'expendedSideBarContent'">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+<!-- <app-side-nav-bar></app-side-nav-bar>
+    <app-top-menu-bar></app-top-menu-bar> -->
+
+<!-- <div class="container mt-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <app-input class="species-input" [required]="true" [DataProvider]="__labelDataProvider[5]"
+                [control]="getControl('speciesName')" [placeholder]="placeholder">
+                <app-label [text]="__labelDataProvider[0]" [forId]="'speciesName'"></app-label>
+            </app-input>
+        </div>
+
+        <div class="form-group">
+            <app-input class="species-input" [required]="true" [DataProvider]="__labelDataProvider[5]"
+                [control]="getControl('lastName')" [placeholder]="placeholder2">
+                <app-label [text]="__labelDataProvider[1]" [forId]="'lastName'"></app-label>
+            </app-input>
+        </div>
+
+        <div class="form-group">
+            <app-select [id]="'animalType'" [control]="getControl('animalType')" [options]="animalOptions">
+                <app-label [text]="'Animal Type'" [forId]="'animalType'"></app-label>
+            </app-select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Submit</button>
+
+    </form>
+
+    <app-table [columns]="columns" [data]="dataSource"></app-table>
+
+
+    <div class="button-container">
+        <app-button *ngFor="let button of buttons" [label]="button.label" [buttonType]="button.type"
+            (buttonClicked)="onButtonClick(button)">
+        </app-button>
+
+        <app-button  [label]="__buttonConfig.label" [buttonType]="__buttonConfig.type"
+            (buttonClicked)="onButtonClick('save')">
+        </app-button>
+    </div>
+</div> -->

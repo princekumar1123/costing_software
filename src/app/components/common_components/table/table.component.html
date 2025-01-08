@@ -1,0 +1,46 @@
+<!-- <table class="table table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let column of columns">{{ column.header }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of pagedData">
+            <td *ngFor="let column of columns">{{ row[column.field] }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="onPageChange()">
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="onPageChange()">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }} items per page</option>
+    </select>
+</div> -->
+
+<div class="table-container">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th *ngFor="let column of columns">{{ column.header }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of pagedData">
+                <td *ngFor="let column of columns">{{ row[column.field] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="pagination-container d-flex justify-content-between align-items-center p-3">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="onPageChange()" class="pagination"></ngb-pagination>
+
+    <select class="form-select page-size-selector" [(ngModel)]="pageSize" (ngModelChange)="onPageChange()">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }} items per page</option>
+    </select>
+</div>
