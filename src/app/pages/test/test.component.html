@@ -1,1 +1,42 @@
-<p>test works!</p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <!-- Table Header -->
+    <thead>
+      <tr>
+        <!-- Main columns with colspan for sub-columns -->
+        <th
+          *ngFor="let column of columns"
+          [attr.colspan]="column.subColumns.length || 1"
+          [attr.rowspan]="column.subColumns.length ? 1 : 2"
+        >
+          {{ column.name }}
+        </th>
+      </tr>
+      <!-- Sub-columns row -->
+      <tr *ngIf="hasSubColumns()">
+        <ng-container *ngFor="let column of columns">
+          <th *ngFor="let subColumn of column.subColumns">
+            {{ subColumn }}
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+
+    <!-- Table Body -->
+    <tbody>
+      <tr *ngFor="let row of data">
+        <ng-container *ngFor="let column of columns">
+          <!-- Main column data -->
+          <td *ngIf="!column.subColumns.length">
+            {{ row[column.name] || '' }}
+          </td>
+
+          <!-- Sub-column data -->
+          <td *ngFor="let subColumn of column.subColumns">
+            {{ getSubColumnValue(row, column.name, subColumn) }}
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>

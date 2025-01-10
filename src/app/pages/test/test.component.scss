@@ -1,0 +1,14 @@
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}

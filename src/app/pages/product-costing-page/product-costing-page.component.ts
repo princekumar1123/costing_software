@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddEditLabelPageComponent } from './modals/add-edit-label-page/add-edit-label-page.component';
 import { RoundedButtonComponent } from '../../components/common_components/rounded-button/rounded-button.component';
+import { AddEditLabelValuePageComponent } from './modals/add-edit-label-value-page/add-edit-label-value-page.component';
 
 
 @Component({
@@ -26,12 +27,48 @@ export class ProductCostingPageComponent {
 
   constructor(private dialog: MatDialog) { }
 
-  openDialog(data?:string) {
-    const dialogRef = this.dialog.open(AddEditLabelPageComponent);
+  openDialog(data?: string) {
 
-    dialogRef.afterClosed().subscribe(result => {
+    // if(data === this.__tablesHeaders[1] || data === this.__tablesHeaders[2]){
+
+    //   if(data === this.__tablesHeaders[1]){
+
+    //   }
+    // }
+
+    const dialogRef1 = this.dialog.open(AddEditLabelPageComponent,{data:this.__tablesHeaders[1]});
+    dialogRef1.afterClosed().subscribe(result => {
       if (result) {
         console.log('Label saved:', result);
+
+        const dialogRef2 = this.dialog.open(AddEditLabelValuePageComponent, result);
+        dialogRef2.afterClosed().subscribe((result: any) => {
+          if (result) {
+            this.__productDetailsColumn = result.mainFieldValues.map((item: any) => ({
+              header: item.labelName.charAt(0).toUpperCase() + item.labelName.slice(1),
+              field: item.labelName
+            }));
+
+            const nestedIds = result.mainFieldValues.map((item: any) => ({
+              [item.labelName]: item._id
+            }));
+
+            nestedIds.unshift({
+              skeletonId: result.skeletonId,
+              _id: result._id
+            });
+
+            this.__productDetailsDataSource = [
+              {
+                _id: nestedIds,
+                ...Object.fromEntries(result.mainFieldValues.map((item: any) => [item.labelName, item.value]))
+              }
+            ];
+            console.log('Label saved:', result);
+          } else {
+            console.log('Dialog was closed without saving.');
+          }
+        });
       } else {
         console.log('Dialog was closed without saving.');
       }
@@ -47,14 +84,31 @@ export class ProductCostingPageComponent {
     'Machine Hour Rate'
   ]
 
+  __productDetailsColumn:any[]=[]
+  __productDetailsDataSource:any[]=[]
+
+  __rawMaterialDetailsAndcostColumn:any=[]
+  __rawMaterialDetailsAndcostDataSource:any=[]
+
+  __conversionCostdetailsColumn:any[]=[]
+  __conversionCostdetailsDataSource:any[]=[]
+
+  __unitCostColumn:any[]=[]
+  __unitCostDataSource:any[]=[]
+
+  __machineHourRateColumn:any[]=[]
+  __machineHourRateDataSource:any[]=[]
+
+
+
   columns = [
-    { header: 'FullName', field: 'fullname' },
-    { header: 'Flag', field: 'flag' },
-    { header: 'Area', field: 'area' },
-    { header: 'Population', field: 'population' }
+    // { header: 'FullName', field: 'fullname' },
+    // { header: 'Flag', field: 'flag' },
+    // { header: 'Area', field: 'area' },
+    // { header: 'Population', field: 'population' }
   ];
-  dataSource = [
-    { id: 1, fullname: 'Russia', flag: 'f/f3/Flag_of_Russia.svg', area: 17075200, population: 146989754 },
+  dataSource: any = [
+    // { id: 1, fullname: 'Russia', flag: 'f/f3/Flag_of_Russia.svg', area: 17075200, population: 146989754 },
     // { id: 2, fullname: 'France', flag: 'c/c3/Flag_of_France.svg', area: 640679, population: 64979548 },
     // { id: 3, fullname: 'Germany', flag: 'b/ba/Flag_of_Germany.svg', area: 357114, population: 82114224 },
     // { id: 4, fullname: 'Portugal', flag: '5/5c/Flag_of_Portugal.svg', area: 92090, population: 10329506 },

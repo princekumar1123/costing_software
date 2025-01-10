@@ -5,7 +5,7 @@
     <app-rounded-button (click)="openDialog(__tablesHeaders[1])"></app-rounded-button>
 </div>
 
-<app-table [columns]="columns" [data]="dataSource"></app-table>
+<app-table [columns]="__productDetailsColumn" [data]="__productDetailsDataSource"></app-table>
 
 <mat-divider class="divider"></mat-divider>
 <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
@@ -13,7 +13,7 @@
     <app-rounded-button (click)="openDialog(__tablesHeaders[2])"></app-rounded-button>
 </div>
 
-<app-table [columns]="columns" [data]="dataSource"></app-table>
+<app-table [columns]="__rawMaterialDetailsAndcostColumn" [data]="__rawMaterialDetailsAndcostDataSource"></app-table>
 
 <mat-divider class="divider"></mat-divider>
 
@@ -23,7 +23,7 @@
 </div>
 
 
-<app-table [columns]="columns" [data]="dataSource"></app-table>
+<app-table [columns]="__conversionCostdetailsColumn" [data]="__conversionCostdetailsDataSource"></app-table>
 
 <mat-divider class="divider"></mat-divider>
 
@@ -32,7 +32,7 @@
     <app-rounded-button (click)="openDialog(__tablesHeaders[4])"></app-rounded-button>
 </div>
 
-<app-table [columns]="columns" [data]="dataSource"></app-table>
+<app-table [columns]="__unitCostColumn" [data]="__unitCostDataSource"></app-table>
 
 <mat-divider class="divider"></mat-divider>
 
@@ -41,6 +41,6 @@
     <app-rounded-button (click)="openDialog(__tablesHeaders[5])"></app-rounded-button>
 </div>
 
-<app-table [columns]="columns" [data]="dataSource"></app-table>
+<app-table [columns]="__machineHourRateColumn" [data]="__machineHourRateDataSource"></app-table>
 
 <mat-divider class="divider"></mat-divider>

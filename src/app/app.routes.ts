@@ -3,6 +3,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { CredentialComponent } from './pages/credential/credential.component';
 import { TestComponent } from './pages/test/test.component';
 import { ProductCostingPageComponent } from './pages/product-costing-page/product-costing-page.component';
+import { ProductCostingTableComponent } from './pages/product-costing-page/tables/product-costing-table/product-costing-table.component';
 
 export const routes: Routes = [
     {
@@ -15,11 +16,15 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                component: ProductCostingPageComponent, 
+                component: ProductCostingTableComponent, 
             },
             {
                 path: 'test',
                 component: TestComponent, 
+            },
+            {
+                path: 'costingtable',
+                component: ProductCostingTableComponent, 
             },
             {
                 path: 'costing',

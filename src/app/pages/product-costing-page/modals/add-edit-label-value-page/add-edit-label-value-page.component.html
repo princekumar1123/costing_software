@@ -1,3 +1,35 @@
+<!-- <mat-dialog-content style="border-top: 20px solid #5f9ffd;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; text-align: start; font-size: large;">
+            Add Product Detail Values
+        </div>
+        <button mat-button type="button" (click)="onCancel()" style="font-size: 20px; line-height: 1;">&times;</button>
+    </div>
+    <form [formGroup]="labelValueForm" (ngSubmit)="onSubmit()">
+        <ng-container formArrayName="mainFieldValues">
+            <div *ngFor="let field of fieldsFormArray.controls; let i = index" [formGroupName]="i"
+                style="margin-bottom: 20px;">
+                <h6>{{ field.get('labelName')?.value }}</h6>
+                <div class="field-container">
+                    <div class="field-item" *ngFor="let key of getFieldKeys(i)">
+                        <app-input [required]="true" [control]="field.get(key)"
+                            [placeholder]="'Enter as ' + __fields[i][key]">
+                        </app-input>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div style="display: flex; margin-top: 20px; text-align: center; justify-content: center; gap: 10px;">
+            <button mat-raised-button color="primary" type="submit" [disabled]="labelValueForm.invalid"
+                style="margin-left: 10px;">
+                Submit
+            </button>
+            <button mat-button type="button" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</mat-dialog-content> -->
+
+
 <mat-dialog-content style="border-top: 20px solid #5f9ffd;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div style="font-weight: bold; text-align: start; font-size: large;">
@@ -6,14 +38,15 @@
         <button mat-button type="button" (click)="onCancel()" style="font-size: 20px; line-height: 1;">&times;</button>
     </div>
     <form [formGroup]="labelValueForm" (ngSubmit)="onSubmit()">
-        <ng-container formArrayName="fields">
+        <ng-container formArrayName="mainFieldValues">
             <div *ngFor="let field of fieldsFormArray.controls; let i = index" [formGroupName]="i"
                 style="margin-bottom: 20px;">
                 <h6>{{ field.get('labelName')?.value }}</h6>
                 <div class="field-container">
-                    <div class="field-item" *ngFor="let key of getFieldKeys(i)">
-                        <app-input [required]="true" [control]="field.get(key)"
-                            [placeholder]="'Enter as ' + fields[i][key]">
+                    <!-- Single Value Input -->
+                    <div class="field-item">
+                        <app-input [required]="true" [control]="field.get('value')"
+                            [placeholder]="'Enter value for ' + field.get('labelName')?.value">
                         </app-input>
                     </div>
                 </div>

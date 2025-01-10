@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { InputComponent } from '../../../../components/common_components/input/input.component';
 import { SelectComponent } from '../../../../components/common_components/select/select.component';
 import { AddEditLabelValuePageComponent } from '../add-edit-label-value-page/add-edit-label-value-page.component';
+import { ApiService } from '../../../../services/api.service';
 // import { ButtonComponent } from '../../../../components/common_components/button/button.component';
 
 @Component({
@@ -39,12 +40,13 @@ export class AddEditLabelPageComponent {
   labelForm: FormGroup;
 
   optionsDataSource: any[] = [
-    { id: 1, value: 'String', label: 'string' },
-    { id: 2, value: 'Number', label: 'number' }
+    { id: 1, value: 'string', label: 'string' },
+    { id: 2, value: 'number', label: 'number' }
   ];
 
   __buttonConfig = { label: 'Add', type: 'success' };
 
+  __label_response:any=''
 
 
 
@@ -52,10 +54,11 @@ export class AddEditLabelPageComponent {
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditLabelPageComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private apiServiceRef: ApiService
   ) {
     this.labelForm = this.fb.group({
-      fields: this.fb.array([])
+      mainFields: this.fb.array([])
     });
 
     this.addField();
@@ -65,8 +68,8 @@ export class AddEditLabelPageComponent {
     this.cd.detectChanges();
   }
 
-  get fields(): FormArray|any {
-    return this.labelForm.get('fields') as FormArray;
+  get mainFields(): FormArray | any {
+    return this.labelForm.get('mainFields') as FormArray;
   }
 
   addField() {
@@ -74,25 +77,38 @@ export class AddEditLabelPageComponent {
       labelName: ['', Validators.required],
       valueType1: ['', Validators.required]
     });
-    this.fields.push(fieldGroup);
+    this.mainFields.push(fieldGroup);
   }
 
   removeField(index: number) {
-    this.fields.removeAt(index);
+    this.mainFields.removeAt(index);
   }
 
   submitForm() {
     if (this.labelForm.valid) {
       console.log('Form Data:', this.labelForm.value);
-      this.dialogRef.close(this.labelForm.value);
-      const dialogRef = this.dialog.open(AddEditLabelValuePageComponent);
-      dialogRef.afterClosed().subscribe((result: any) => {
-        if (result) {
-          console.log('Label saved:', result);
-        } else {
-          console.log('Dialog was closed without saving.');
-        }
-      });
+
+      this.apiServiceRef.post_api_service('labels/add/products/label-names', this.labelForm.value).subscribe((res:any) => {
+        console.log("result", res);
+        this.__label_response= res.skeleton
+
+ 
+      this.dialogRef.close({data:this.__label_response});
+      console.log();
+      
+      if(this.__label_response){
+        console.log("gg");
+        
+      // const dialogRef = this.dialog.open(AddEditLabelValuePageComponent,{data:this.__label_response});
+      // dialogRef.afterClosed().subscribe((result: any) => {
+      //   if (result) {
+      //     console.log('Label saved:', result);
+      //   } else {
+      //     console.log('Dialog was closed without saving.');
+      //   }
+      // });
+      }
+    })
     }
   }
 

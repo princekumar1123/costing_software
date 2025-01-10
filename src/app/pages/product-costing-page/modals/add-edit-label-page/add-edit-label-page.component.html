@@ -1,5 +1,4 @@
 <mat-dialog-content style="border-top: 20px solid #5f9ffd; display: flex; flex-direction: column; height: 100%;">
-    <!-- Header -->
     <div class="dialog-header"
         style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
         <div class="title" style="font-weight: bold; font-size: large;">Add Product Detail Labels</div>
@@ -7,11 +6,10 @@
             style="font-size: 20px;">&times;</button>
     </div>
 
-    <!-- Scrollable Content -->
     <div class="dialog-content" style="flex-grow: 1; overflow-y: auto; padding: 10px;">
         <form [formGroup]="labelForm">
-            <ng-container formArrayName="fields">
-                <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="field-group"
+            <ng-container formArrayName="mainFields">
+                <div *ngFor="let field of mainFields.controls; let i = index" [formGroupName]="i" class="field-group"
                     style="margin-bottom: 10px;">
                     <app-input [required]="true" [control]="field.get('labelName') " [placeholder]="'Enter Field name'">
                     </app-input>
@@ -28,7 +26,6 @@
         </form>
     </div>
 
-    <!-- Footer -->
     <div class="dialog-footer" style="display: flex; justify-content: center; padding: 10px;">
         <button mat-raised-button color="primary" type="button" (click)="submitForm()" [disabled]="labelForm.invalid">
             Submit
